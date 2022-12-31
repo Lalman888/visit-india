@@ -49,7 +49,7 @@ const State = ({states,placearray}) => {
             </div>
             <div className="pb-10 ">
 
-            <div className="max-w-[1240px] py-10 px-8 m-auto grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 lg:gap-5 gap-24">
+            <div className="max-w-7xl py-10  m-auto grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 lg:gap-8 gap-24">
         {/* Card */}
         {
           placearray.place.map((t) => (
