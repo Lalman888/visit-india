@@ -47,14 +47,14 @@ const Explore = ({states}) => {
                   </span>
                 </div>
                 <div className="p-8 text-center sm:p-9 md:p-7 xl:p-9">
-                  <h3>
+                  <h5>
                     <p
                       // href="/n"
                       className="text-dark hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]"
                     >
                       {state.title}
                     </p>
-                  </h3>
+                  </h5>
                   <p className="text-body-color mb-7 text-base leading-relaxed">
                     {state.description}
                   </p>

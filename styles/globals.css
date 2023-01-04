@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+h3 {
+  @apply text-4xl font-bold pt-7 pb-6 flex justify-center;
+}
+h4 {
+  @apply text-xl font-semibold;
+}
+p {
+  @apply py-2;
+}
+
 html {
   scroll-behavior: smooth;
   font-family: 'Raleway', sans-serif;
@@ -45,6 +55,8 @@ html {
 .explore:hover {
   background-position: left;
 }
+
+
 
 
 @media screen and (max-width: 768px) {

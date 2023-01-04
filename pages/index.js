@@ -12,7 +12,7 @@ export default function Home({placed,temples,forts,mountains,states}) {
     useCdn: false,
   });
   const builder = imageUrlBuilder(client);
-  console.log("places 1 ", placed);
+  // console.log("places 1 ", placed);
   return (
     <div >
       <Head>
@@ -179,7 +179,7 @@ export default function Home({placed,temples,forts,mountains,states}) {
 
 
       <div className='max-w-[1240px] px-8 m-auto'>
-            <h1 className='text-4xl font-bold text-center mt-10 mb-16'> Popluar States </h1>
+            <h1 className='text-4xl font-bold text-center mt-10 mb-16'> Popular States </h1>
         </div>
         <div className="max-w-[1240px] py-10 px-8 m-auto grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 lg:gap-5 gap-24">
         {/* Card */}
