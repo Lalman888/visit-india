@@ -233,7 +233,7 @@ export async function getServerSideProps(context) {
     useCdn: false,
   });
 
-  const PopularPlacequery = `*[_type == "place" && popularCount >9 ]`;
+  const PopularPlacequery = `*[_type == "place" && popularCount >9 && popularCount < 90 ]`;
   
   const placed = await client.fetch(PopularPlacequery);
 
