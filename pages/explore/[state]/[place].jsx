@@ -18,7 +18,7 @@ const Place = ({placearray}) => {
   const builder = imageUrlBuilder(client);
     const router = useRouter()
     const { place } = router.query
-    console.log('placearray  ', placearray)
+    // console.log('placearray  ', placearray)
   const location = {
     lat: placearray.location.lat,
     lng: placearray.location.lng

@@ -27,7 +27,7 @@ const Navbar = ({loading}) => {
       }
     };
     window.addEventListener('scroll', changeColor);
-    console.log(router.pathname);
+    // console.log(router.pathname);
   }, [router.pathname]);
 
   return (
