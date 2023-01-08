@@ -20,6 +20,7 @@ const State = ({states,placearray}) => {
   
   // console.log('states', states)
   // console.log('placearray', placearray.place)
+  // console.log('placearray p', placearray)
 
   return (
     <>
@@ -39,6 +40,25 @@ const State = ({states,placearray}) => {
         </div>
          <div className="max-w-7xl mx-auto px-4 py-9 sm:px-6 lg:px-8 text-black">
             <div className="py-10">
+            <div className="py-4">
+              <div className="text-sm breadcrumbs">
+              <ul>
+                  <li>
+                <Link href="/">
+                  <a className="text-gray-500 hover:text-gray-900">Home</a>
+                </Link>
+                </li>
+                <li>
+                <Link href="/explore">
+                  <a className="text-gray-500 hover:text-gray-900">Explore</a>
+                </Link>
+                </li>
+                <li>
+                   {states.title}
+                </li>
+              </ul>
+                </div>
+                </div>
                <div className="lg:text-lg text-sm leading-7 font-medium pb-5 ">
                <PortableText
               // Pass in block content straight from Sanity.io
@@ -126,7 +146,7 @@ export async function getServerSideProps(context) {
       
     }`
   );
-  // console.log('placearray', placearray)
+  // console.log('placearray p', placearray)
   // console.log('states q', states)
 
   return {
