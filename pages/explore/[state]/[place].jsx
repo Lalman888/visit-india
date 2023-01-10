@@ -36,7 +36,7 @@ const Place = ({ placearray }) => {
       <Head>
         <title>{place}</title>
       </Head>
-      <div className="lg:pt-[2%] pt-[8%]  ">
+      <div className="lg:pt-[2%] pt-[8%]  bg-white text-black">
         <div
           className="flex  transition-all duration-200 ease-linear items-center justify-center h-[68vh] bg-local bg-center bg-cover  "
           style={{

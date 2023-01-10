@@ -42,19 +42,19 @@ const Navbar = ({loading}) => {
           </h1>
         </Link>
         <ul style={{ color: `${ loading && router.pathname === '/' ? 'black' : textColor }` }} className='hidden sm:flex'>
-          <li className='p-4'>
+          <li className='p-4 hover:opacity-70'>
             <Link href='/'>Home</Link>
           </li>
-          <li className='p-4'>
+          <li className='p-4 hover:opacity-70'>
             <Link href='/explore'>Explore India</Link>
           </li>
-          {/* <li className='p-4'>
+          {/* <li className='p-4 hover:opacity-70'>
             <Link href='/temples-in-world'>Hindu Temples Outside India</Link>
           </li> */}
-          {/* <li className='p-4'>
+          {/* <li className='p-4 hover:opacity-70'>
             <Link href='/about'>About</Link>
           </li> */}
-          <li className='p-4'>
+          <li className='p-4 hover:opacity-70'>
             <Link href='/contact'>Contact</Link>
           </li>
         </ul>
