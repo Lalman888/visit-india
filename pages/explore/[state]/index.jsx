@@ -88,7 +88,7 @@ const State = ({states,placearray}) => {
         {/* Card */}
         {
           placearray.place.map((t) => (
-            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size" key={t._id}>
+            <div className="rounded-md overflow-hidden shadow-lg card-size" key={t._id}>
           <Image
             className="w-full scale-100 hover:scale-110 duration-700 "
             src={builder.image(t.mainImage).url() || "/Home/Taj_mahal.avif"}
@@ -97,7 +97,7 @@ const State = ({states,placearray}) => {
             height={190}
           />
           <Link href={`/explore/${state}/${t.slug.current}`}>
-          <div className="px-6 py-8">
+          <div className="px-6 py-8 cursor-pointer">
             <div className="font-bold text-xl mb-2">{
               t.title
             }</div>
