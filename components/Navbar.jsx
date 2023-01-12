@@ -2,12 +2,14 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const Navbar = ({loading}) => {
   const [nav, setNav] = useState(false);
   const [color, setColor] = useState('transparent');
   const [textColor, setTextColor] = useState('white');
   const router = useRouter();
+  const [logoAdd, setLogoAdd] = useState('/logo.png')
   
   
 
@@ -20,13 +22,16 @@ const Navbar = ({loading}) => {
       if (window.scrollY >= 90 && router.pathname === '/') {
         setColor('#ffffff');
         setTextColor('#000000');
+        setLogoAdd('/logo_b.png')
       } else {
         
         setColor('transparent');
         setTextColor('#ffffff');
+        setLogoAdd('/logo.png')
       }
     };
     window.addEventListener('scroll', changeColor);
+    
     // console.log(router.pathname);
   }, [router.pathname]);
 
@@ -37,9 +42,10 @@ const Navbar = ({loading}) => {
     >
       <div className='max-w-[1240px] m-auto flex justify-between items-center p-4 text-white'>
         <Link href='/'>
-          <h1 style={{ color: `${ loading && router.pathname === '/' ? 'black' : textColor }  ` }} className='font-bold cursor-pointer text-4xl'>
+          {/* <h1 style={{ color: `${ loading && router.pathname === '/' ? 'black' : textColor }  ` }} className='font-bold cursor-pointer text-4xl'>
             Captur
-          </h1>
+          </h1> */}
+          <Image className='cursor-pointer' src={logoAdd} width={200} height={60} alt="logo" />
         </Link>
         <ul style={{ color: `${ loading && router.pathname === '/' ? 'black' : textColor }` }} className='hidden sm:flex'>
           <li className='p-4 hover:opacity-70'>
