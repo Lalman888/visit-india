@@ -35,6 +35,8 @@ const Place = ({ placearray }) => {
     <>
       <Head>
         <title>{place}</title>
+        <meta name="description" content="Welcome to Visit India, your ultimate guide to exploring the rich culture and history of India. From the bustling cities to the tranquil countryside, India is a land of diversity and wonder." />
+        <link rel="icon" href="/mountain.ico" />
       </Head>
       <div className="lg:pt-[2%] pt-[8%]  bg-white text-black">
         <div

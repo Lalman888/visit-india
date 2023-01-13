@@ -17,9 +17,9 @@ export default function Home({placed,temples,forts,mountains,states}) {
     <div className='bg-white text-black' >
       <Head>
         <title>Visit India</title>
-        <meta name='description' content='Experience the beauty and diversity of India. From culture-rich cities to stunning beaches, wildlife safaris to adventure sports.' />
+        <meta name='description' content='Welcome to Visit India, your ultimate guide to exploring the rich culture and history of India. From the bustling cities to the tranquil countryside, India is a land of diversity and wonder.' />
         
-        <link rel='icon' href='/favicon.ico' />
+        <link rel='icon' href='/mountain.ico' />
       </Head>
       <Hero heading='Travel India' message='India establishes its identity as the country of architectural masterpieces, making it an ideal travel destination to plan a heritage tour in the world' />
       <div className='max-w-[1240px] py-10 px-8 m-auto'>
