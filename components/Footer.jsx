@@ -8,10 +8,9 @@ const Footer = () => {
     
 <div className="w-full min-h-[60vh] flex items-center justify-center bg-black mt-16">
         <div className="md:w-2/3 w-full px-4 text-white flex flex-col">
-            <div className="w-full text-7xl font-bold">
-                <h1 className="w-full md:w-2/3">How can we help you. get
-                    in touch</h1>
-            </div>
+            {/* <div className="w-full text-4xl font-bold">
+                <h1 className="w-full md:w-2/3">We would love to hear your feedback and suggestions, so please feel free to contact us with any comments or questions</h1>
+            </div> */}
            
             <div className="flex flex-col">
                 <div className="flex mt-24 mb-12 flex-row justify-between">
