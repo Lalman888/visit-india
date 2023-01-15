@@ -59,6 +59,11 @@ const Place = ({ placearray }) => {
             <div className="py-4">
               <div className="text-sm breadcrumbs">
                 <ul>
+                <li>
+                  <Link href="/">
+                      <a className="text-gray-500 hover:text-gray-900">Home</a>
+                    </Link>
+                  </li>
                   <li>
                   <Link href="/explore">
                       <a className="text-gray-500 hover:text-gray-900">Explore</a>
