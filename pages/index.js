@@ -3,6 +3,7 @@ import Hero from '../components/Hero';
 import Image from 'next/image';
 import imageUrlBuilder from "@sanity/image-url";
 import { createClient } from "next-sanity"; 
+import Link from 'next/link';
 
 export default function Home({placed,temples,forts,mountains,states}) {
   const client = createClient({
@@ -51,7 +52,8 @@ export default function Home({placed,temples,forts,mountains,states}) {
         
         { 
           placed.map((p) => (
-            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size" key={p._id}>
+            <Link href={`/explore/${p.stateslug}/${p.slug.current}`} key={p._id}>
+            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size" >
           <Image
             className="md:w-full scale-100 hover:scale-110 duration-700 "
             src={builder.image(p.mainImage).url() || "/Home/Taj_mahal.avif"}
@@ -68,6 +70,7 @@ export default function Home({placed,temples,forts,mountains,states}) {
             </p>
           </div>
         </div>
+        </Link>
           ))
             
         }
@@ -83,7 +86,8 @@ export default function Home({placed,temples,forts,mountains,states}) {
         {/* Card */}
         {
           temples.map((t) => (
-            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size" key={t._id}>
+            <Link href={`/explore/${t.stateslug}/${t.slug.current}`} key={t._id}>
+            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size" >
           <Image
             className="w-full scale-100 hover:scale-110 duration-700 "
             src={builder.image(t.mainImage).url() || "/Home/Taj_mahal.avif"}
@@ -102,6 +106,7 @@ export default function Home({placed,temples,forts,mountains,states}) {
             </p>
           </div>
         </div>
+        </Link>
           ))
         }
       </div>
@@ -117,7 +122,8 @@ export default function Home({placed,temples,forts,mountains,states}) {
         {/* Card */}
         {
           forts.map((f) => (
-            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size" key={f._id}>
+            <Link href={`/explore/${f.stateslug}/${f.slug.current}`} key={f._id}>
+            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size" >
           <Image
             className="w-full scale-100 hover:scale-110 duration-700 "
             src={builder.image(f.mainImage).url() || "/Home/Taj_mahal.avif"}
@@ -136,6 +142,7 @@ export default function Home({placed,temples,forts,mountains,states}) {
             </p>
           </div>
         </div>
+        </Link>
           ))
         }
       </div>
@@ -152,7 +159,8 @@ export default function Home({placed,temples,forts,mountains,states}) {
         {/* Card */}
         {
           mountains.map((m) => (
-            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size" key={m._id}>
+            <Link href={`/explore/${m.stateslug}/${m.slug.current}`} key={m._id}>
+            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size" >
           <Image
             className="w-full scale-100 hover:scale-110 duration-700 "
             src={builder.image(m.mainImage).url() || "/Home/Taj_mahal.avif"}
@@ -171,6 +179,7 @@ export default function Home({placed,temples,forts,mountains,states}) {
             </p>
           </div>
         </div>
+        </Link>
           ))
         }
       </div>
@@ -186,7 +195,8 @@ export default function Home({placed,temples,forts,mountains,states}) {
         {/* Card */}
         {
           states.map((s) => (
-            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size" key={s._id}>
+            <Link href={`/explore/${s.slug.current}`} key={s._id}>
+            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size" >
           <Image
             className="w-full scale-100 hover:scale-110 duration-700 "
             src={builder.image(s.mainImage).url() || "/Home/Taj_mahal.avif"}
@@ -205,6 +215,7 @@ export default function Home({placed,temples,forts,mountains,states}) {
             </p>
           </div>
         </div>
+        </Link>
           ))
         }
       </div>

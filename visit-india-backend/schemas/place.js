@@ -24,6 +24,11 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'stateslug',
+      title: 'StateSlug',
+      type: 'string',
+    }),
+    defineField({
       name: 'description',
         title: 'Description',
         type: 'text',

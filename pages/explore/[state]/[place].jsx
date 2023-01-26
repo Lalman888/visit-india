@@ -49,7 +49,7 @@ const Place = ({ placearray }) => {
         >
           <div className="absolute top-[4%] h-[68vh] left-0 right-0 bottom-0 bg-black/20 z-[2]" />
           <div className="relative top-[1%] p-5 text-white z-[2] mt-[-10rem]">
-            <h1 className="lg:text-8xl text-3xl font-bold">
+            <h1 className="lg:text-8xl text-3xl font-bold text-center max-w-7xl">
               {placearray.title}
             </h1>
           </div>
