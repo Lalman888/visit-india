@@ -23,7 +23,7 @@ const Explore = ({states}) => {
         <meta name='description' content='Welcome to Visit India, your ultimate guide to exploring the rich culture and history of India. From the bustling cities to the tranquil countryside, India is a land of diversity and wonder.' />
         <link rel='icon' href='/mountain.ico' />
       </Head>
-      <div className='lg:pt-[7%] pt-[22%] bg-white text-black ' >
+      <div className='lg:pt-[7%] pt-[36%] bg-white text-black ' >
         <h1 className='text-5xl lg:pr-28 font-bold text-center'>Explore India</h1>
         <p className='text-center lg:pr-28 text-xl py-5'>Explore the beauty of India</p>
         <div className="max-w-[1240px] py-10 px-8 m-auto grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 sm:gap-16 lg:gap-32">
