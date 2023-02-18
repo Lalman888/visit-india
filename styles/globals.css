@@ -16,10 +16,10 @@ p {
 html {
   scroll-behavior: smooth;
   font-family: 'Raleway', sans-serif;
-  cursor: none;
+  /* cursor: ; */
 }
 
-.cursor{
+/* .cursor{
   position: fixed;
   background: rgb(18, 145, 214);
   width: 20px;
@@ -33,7 +33,7 @@ html {
   pointer-events: none;
   transition: 0.2s ease;
 
-}
+} */
 
 .card-size>span{
   width: 360px!important;
@@ -62,6 +62,9 @@ html {
 
 .custom-img-6{
   background-image: url('../public/Home/Wat-Thai-Temple-Kushinagar.webp')
+}
+.custom-img-w{
+  background-image: url('../public/Angkorvat.jpg')
 }
 
 .explore {

@@ -54,9 +54,9 @@ const Navbar = ({loading}) => {
           <li className='p-4 hover:opacity-70'>
             <Link href='/explore'>Explore India</Link>
           </li>
-          {/* <li className='p-4 hover:opacity-70'>
+          <li className='p-4 hover:opacity-70'>
             <Link href='/temples-in-world'>Hindu Temples Outside India</Link>
-          </li> */}
+          </li>
           {/* <li className='p-4 hover:opacity-70'>
             <Link href='/about'>About</Link>
           </li> */}
@@ -92,9 +92,9 @@ const Navbar = ({loading}) => {
               <Link href='/explore'>Explore India</Link>
             </li>
             {/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-            {/* <li onClick={handleNav} className='p-4 text-4xl hover:text-gray-500'>
+            <li onClick={handleNav} className='p-4 text-4xl hover:text-gray-500'>
             <Link href='/temples-in-world'>Hindu Temples Outside India</Link>
-            </li> */}
+            </li>
             {/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
             {/* <li onClick={handleNav} className='p-4 text-4xl hover:text-gray-500'>
               <Link href='/work'>Work</Link>
