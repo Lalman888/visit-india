@@ -44,9 +44,9 @@ function MyApp({ Component, pageProps }) {
   Router.events.on('routeChangeError', () => setLoading(false));
   return (
     <>
-    <div className='cursor'
+    {/* <div className='cursor'
       ref={cursor}
-    />
+    /> */}
     <div className='bg-white text-black' >
       <Navbar loading={loading} />
       {
