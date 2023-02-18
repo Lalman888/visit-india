@@ -19,6 +19,10 @@ html {
   /* cursor: ; */
 }
 
+.w-110{
+  width: 420px;
+}
+
 /* .cursor{
   position: fixed;
   background: rgb(18, 145, 214);
