@@ -26,7 +26,7 @@ const TemplesInWorld = () => {
 
       {/* Country wise */}
 
-      <div className="font-semibold text-black text-3xl lg:text-6xl text-center py-5 md:py-10">
+      <div className="font-semibold text-black text-3xl lg:text-6xl text-center py-5 md:py-8">
         <h2> Country wise </h2>
       </div>
 
