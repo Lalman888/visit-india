@@ -30,11 +30,11 @@ const TemplesInWorld = () => {
         <h2> Country wise </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-10 lg:gap-12 px-5 md:px-10 lg:px-12 lg:pl-16 py-5 md:py-10 lg:py-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-10 lg:gap-12 px-5 md:px-10 lg:px-12 lg:pl-16 py-5 md:py-10 lg:py-20">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
-          <div className="group relative w-110 h-96 my-5 rounded-md" key={item+1}>
+          <div className="group relative xl:w-110 max-w-xs sm:max-w-md h-96 my-5 rounded-md" key={item+1}>
             <img
-              className=" object-cover rounded-xl w-110 h-96 "
+              className=" object-cover rounded-xl xl:w-110 max-w-md   xl:h-96 "
               src="/Angkorvat.jpg"
             />
             <div className="absolute rounded-xl top-0 left-0 w-full h-0 flex flex-col justify-center items-center bg-black/60 opacity-0 group-hover:h-full group-hover:opacity-100 duration-500">
