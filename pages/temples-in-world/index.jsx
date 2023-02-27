@@ -39,7 +39,7 @@ const TemplesInWorld = () => {
             />
             <div className="absolute rounded-xl top-0 left-0 w-full h-0 flex flex-col justify-center items-center bg-black/60 opacity-0 group-hover:h-full group-hover:opacity-100 duration-500">
               <Link href="/explore">
-              <h1 className="text-3xl cursor-pointer lg:text-4xl font-semibold text-white">
+              <h1 className="text-3xl cursor-pointer lg:text-4xl font-semibold text-white hover:text-gray-400">
                 Cambodia
               </h1>
               </Link>
