@@ -32,7 +32,7 @@ const Explore = ({states}) => {
 
           {
             states ? states.map((state) => (
-              <article className='md:hover:shadow-xl md:duration-700 md:hover:scale-95' key={state._id} >
+              <article className='md:hover:shadow-xl md:duration-700 ' key={state._id} >
               <div className="mb-10 overflow-hidden rounded-lg state-size">
               <Image
             className="md:w-full"
@@ -50,7 +50,7 @@ const Explore = ({states}) => {
                   <h5>
                     <p
                       // href="/n"
-                      className="text-dark hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]"
+                      className="text-dark mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]"
                     >
                       {state.title}
                     </p>
@@ -60,7 +60,7 @@ const Explore = ({states}) => {
                   </p>
                   <Link href={`/explore/${state.slug.current}`} >
                          {/* rome-ignore lint/a11y/useValidAnchor: <explanation> */}
-                         <a className="text-emerald-700 px-5 py-2 hover:text-white hover:bg-emerald-700 border text-base font-semibold cursor-pointer">Read More</a>
+                         <a className="text-emerald-700 hover:animate-bounce hover:block hover:duration-100 hover:transition-all px-5 py-2 hover:text-white hover:bg-emerald-700 border text-base font-semibold cursor-pointer">Read More</a>
                   </Link>
                 </div>
               </div>

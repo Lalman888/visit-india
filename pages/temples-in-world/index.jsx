@@ -27,7 +27,7 @@ const TemplesInWorld = () => {
       {/* Country wise */}
 
       <div className="font-semibold text-black text-3xl lg:text-6xl text-center py-5 md:py-8">
-        <h2> Country wise </h2>
+        <h2> Countries </h2>
       </div>
 
       <div className="sm:grid flex flex-col grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-10 lg:gap-12 px-5 md:px-10 lg:px-12 lg:pl-16 py-5 md:py-10 lg:py-20">
