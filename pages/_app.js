@@ -1,15 +1,17 @@
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
-import '../styles/globals.css';
-import { useState,useRef,useEffect } from 'react';
-import Router from 'next/router';
-import Loader from '../components/Loader'
-import { Analytics } from '@vercel/analytics/react';
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import "../styles/globals.css";
+import { useState, useRef, useEffect } from "react";
+import Router from "next/router";
+import Loader from "../components/Loader";
+import { Analytics } from "@vercel/analytics/react";
 import { gsap } from "gsap";
+import { Puff, ThreeCircles } from "react-loader-spinner";
 // import {} from '@next/font/google'
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
+  const [pageload, setPageload] = useState(true);
   const cursor = useRef(null);
   const [mousePosition, setMousePosition] = useState({
     x: 0,
@@ -20,6 +22,12 @@ function MyApp({ Component, pageProps }) {
     const mouseY = e.clientY;
     setMousePosition({ x: mouseX, y: mouseY });
   };
+  useEffect(() => {
+    setTimeout(() => {
+      setPageload(false);
+    }, 3000);
+  }, []);
+
   useEffect(() => {
     document.addEventListener("mousemove", onMouseMove);
     return () => {
@@ -32,31 +40,55 @@ function MyApp({ Component, pageProps }) {
     //   top: mousePosition.y - 15,
     // });
     gsap.set(cursor.current, {
-      x: mousePosition.x ,
-      y: mousePosition.y ,
-      })
+      x: mousePosition.x,
+      y: mousePosition.y,
+    });
   }, [mousePosition]);
 
-
-
-  Router.events.on('routeChangeStart', () => setLoading(true));
-  Router.events.on('routeChangeComplete', () => setLoading(false));
-  Router.events.on('routeChangeError', () => setLoading(false));
+  Router.events.on("routeChangeStart", () => setLoading(true));
+  Router.events.on("routeChangeComplete", () => setLoading(false));
+  Router.events.on("routeChangeError", () => setLoading(false));
   return (
     <>
-    {/* <div className='cursor'
+      {/* <div className='cursor'
       ref={cursor}
     /> */}
-    <div className='bg-white text-black' >
-      <Navbar loading={loading} />
-      {
-        loading ? <> <Loader/> </> : <>
-        <Component {...pageProps} />
-        <Analytics />
-        </> 
-      }
-      <Footer />
-    </div>
+      {pageload ? (
+        <>
+          <div className="w-full h-screen flex items-center justify-center">
+            <ThreeCircles
+              height="100"
+              width="100"
+              color="#000000"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+              ariaLabel="three-circles-rotating"
+              outerCircleColor=""
+              innerCircleColor=""
+              middleCircleColor=""
+            />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="bg-white text-black">
+            <Navbar loading={loading} />
+            {loading ? (
+              <>
+                {" "}
+                <Loader />{" "}
+              </>
+            ) : (
+              <>
+                <Component {...pageProps} />
+                <Analytics />
+              </>
+            )}
+            <Footer />
+          </div>
+        </>
+      )}
     </>
   );
 }
