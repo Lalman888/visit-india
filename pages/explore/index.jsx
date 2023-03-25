@@ -7,10 +7,18 @@ import Image from 'next/image'
 import imageUrlBuilder from "@sanity/image-url";
 import { createClient } from "next-sanity";
 import { BsSearch } from 'react-icons/bs'
+import { useRouter } from 'next/router'
 
 
 const Explore = ({states}) => {
   let [isOpen, setIsOpen] = useState(false)
+  const router = useRouter()
+  const [query, setQuery] = useState('')
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    router.push(`/search?q=${query}`)
+  }
 
   function closeModal() {
     setIsOpen(false)
@@ -117,10 +125,18 @@ const Explore = ({states}) => {
                     Search for a place
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Your payment has been successfully submitted. We’ve sent
-                      you an email with all of the details of your order.
-                    </p>
+                  <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+          placeholder="Search for a place"
+          className='border-2 border-gray-300 p-2 rounded-lg'
+        />
+        <button
+          className='bg-blue-500 text-white px-4 py-2 rounded-lg ml-7'
+        type="submit">Search</button>
+      </form>
                   </div>
 
                   <div className="mt-4">
@@ -129,7 +145,7 @@ const Explore = ({states}) => {
                       className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
-                      Got it, thanks!
+                      Close
                     </button>
                   </div>
                 </Dialog.Panel>
