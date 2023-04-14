@@ -35,7 +35,9 @@ const Hero = ({heading, message}) => {
    
 
   return (
-    <div className={`flex  transition-all duration-200 ease-linear items-center justify-center h-screen bg-fixed bg-center bg-cover custom-img-${slide} `}>
+    <div 
+    loading = 'lazy'
+    className={`flex   transition-all duration-300 ease-in-out items-center justify-center h-screen bg-fixed bg-center bg-cover custom-img-${slide} `}>
       {/* Overlay */}
       <div className='absolute top-0 left-0 right-0 bottom-0 bg-black/70 z-[2]' />
       <div className='relative top-[1%] p-5 text-white z-[2] mt-[-10rem]'>
