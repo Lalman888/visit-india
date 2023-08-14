@@ -8,6 +8,7 @@ module.exports = {
     domains: [
       'images.unsplash.com',
       'cdn.sanity.io',
-    ]
+    ],
+    formats: ["image/avif", "image/webp"],
   }
 }
