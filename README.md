@@ -19,7 +19,7 @@ The Visit India project is an interactive and informative resource designed to h
 
 ## Getting Started
 
-To start using Visit India, you don't need to download or install anything. Simply visit our website at [www.visit-india.com](https://visit-india.vercel.app/) and begin your exploration of India's diverse culture, historical landmarks, natural beauty, and more.
+To start using Visit India, you don't need to download or install anything. Simply visit our website at [visit-india](https://visit-india.vercel.app/) and begin your exploration of India's diverse culture, historical landmarks, natural beauty, and more.
 
 ## Features
 
@@ -48,7 +48,7 @@ We welcome contributions from the community to enhance Visit India. If you have 
 2. **Feedback:** Help us improve by providing feedback on existing content or suggesting new features.
 3. **Bug Reporting:** If you encounter any issues while using Visit India, report them so we can address and fix them promptly.
 
-To contribute, please visit our [GitHub repository](https://github.com/visit-india-project) and follow the guidelines provided there.
+To contribute, please visit our [GitHub repository](https://github.com/Lalman888/visit-india) and follow the guidelines provided there.
 
 ## License
 
