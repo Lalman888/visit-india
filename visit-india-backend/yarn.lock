@@ -1529,16 +1529,15 @@
   resolved "https://registry.yarnpkg.com/@sanity/generate-help-url/-/generate-help-url-3.0.0.tgz#60e9cba61b82103ea3761730a53cd9310b98892d"
   integrity sha512-wtMYcV5GIDIhVyF/jjmdwq1GdlK07dRL40XMns73VbrFI7FteRltxv48bhYVZPcLkRXb0SHjpDS/icj9/yzbVA==
 
-"@sanity/google-maps-input@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@sanity/google-maps-input/-/google-maps-input-3.0.0.tgz#e6e41034930de4d75cf3d5b4358df706fd5958c9"
-  integrity sha512-TVoFY7x1fLrfNo8LTYORRdZHVW1O2BA3V4KBOTJ0unnBkB2WsggQUMk2nZNY1ePNWerPS0xMgyAhMTLGwbDtoQ==
+"@sanity/google-maps-input@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@sanity/google-maps-input/-/google-maps-input-3.0.1.tgz#78f1d474c491cf24d47ae5d2988851e8f02f54b4"
+  integrity sha512-1GJ/Q5n7fuda6ubx6sd666OO2s/z1R4pnNpJc08FzQ7lNI5nM8s5iGqiOi3qqN50h6/ZUaNisQlmjLBwTtw5gg==
   dependencies:
     "@sanity/icons" "^2.0.0"
     "@sanity/incompatible-plugin" "^1.0.4"
     "@sanity/ui" "^1.0.0"
     lodash "^4.17.21"
-    rxjs "^6.6.7"
 
 "@sanity/groq-store@^1.1.4":
   version "1.1.4"
@@ -5497,7 +5496,7 @@ rxjs-exhaustmap-with-trailing@^1.2.0:
   resolved "https://registry.yarnpkg.com/rxjs-exhaustmap-with-trailing/-/rxjs-exhaustmap-with-trailing-1.2.0.tgz#7df3a126c7da2d7bdfb393a55017eef633dea468"
   integrity sha512-r8W/h996iXbMas7RxZyOEv9AK0fPh8jM9JyFpYLvZdpVrLKZkxUkWNPx2q9P40xHmm4QB4ayUJwXNJy8Yg6OuQ==
 
-rxjs@^6.0.0, rxjs@^6.4.0, rxjs@^6.5.3, rxjs@^6.6.7:
+rxjs@^6.0.0, rxjs@^6.4.0, rxjs@^6.5.3:
   version "6.6.7"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.7.tgz#90ac018acabf491bf65044235d5863c4dab804c9"
   integrity sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==
