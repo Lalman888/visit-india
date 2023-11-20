@@ -13,7 +13,7 @@ const FamousMountains = ({fmountains: mountains }) => {
         {/* Card */}
         {
           mountains.map((m) => (
-            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size" key={m._id}>
+            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size lg:min-h-[640px]" key={m._id}>
           <Image
             className="w-full scale-100 hover:scale-110 duration-700 "
             src={urlFor(m?.mainImage).url() || "/Home/Taj_mahal.avif"}

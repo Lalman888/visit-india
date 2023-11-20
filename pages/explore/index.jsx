@@ -42,8 +42,8 @@ const Explore = ({states}) => {
         <meta name='description' content='Welcome to Visit India, your ultimate guide to exploring the rich culture and history of India. From the bustling cities to the tranquil countryside, India is a land of diversity and wonder.' />
         <link rel='icon' href='/mountain.ico' />
       </Head>
-      <div className='lg:pt-[7%] pt-[36%] bg-white text-black ' >
-        <h1 className='text-5xl lg:pr-28 font-bold text-center'>Explore India</h1>
+      <div className='lg:pt-[10%] pt-[36%] bg-white text-black ' >
+        <h1 className='text-6xl lg:pr-28 font-bold text-center'>Explore India</h1>
         <p className='text-center lg:pr-28 text-xl py-5'>Explore the beauty of India</p>
         <div className='flex max-w-[1240px] m-auto justify-end'>
           <BsSearch onClick={openModal} className='text-3xl mr-10 cursor-pointer text-black' />
@@ -55,7 +55,7 @@ const Explore = ({states}) => {
 
           {
             states ? states.map((state) => (
-              <article className='md:hover:shadow-xl md:duration-700 ' key={state._id} >
+              <article className='md:hover:shadow-2xl shadow-md md:duration-700 ' key={state._id} >
               <div className="mb-10 overflow-hidden rounded-lg state-size">
               <Image
             className="md:w-full"
@@ -83,7 +83,7 @@ const Explore = ({states}) => {
                   </p>
                   <Link href={`/explore/${state.slug.current}`} >
                          {/* rome-ignore lint/a11y/useValidAnchor: <explanation> */}
-                         <a className="text-emerald-700 hover:animate-bounce hover:block hover:duration-100 hover:transition-all px-5 py-2 hover:text-white hover:bg-emerald-700 border text-base font-semibold cursor-pointer">Read More</a>
+                         <p className="text-emerald-700 hover:block hover:duration-100 hover:transition-all px-5 py-2 hover:text-white hover:bg-emerald-700 border text-base font-semibold cursor-pointer">Read More</p>
                   </Link>
                 </div>
               </div>

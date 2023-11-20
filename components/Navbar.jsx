@@ -45,7 +45,7 @@ const Navbar = ({loading}) => {
           {/* <h1 style={{ color: `${ loading && router.pathname === '/' ? 'black' : textColor }  ` }} className='font-bold cursor-pointer text-4xl'>
             Captur
           </h1> */}
-          <Image className='cursor-pointer' src={logoAdd} width={200} height={60} alt="logo" />
+          <Image className='cursor-pointer' src={logoAdd} width={110} height={30} alt="logo" />
         </Link>
         <ul style={{ color: `${ loading && router.pathname === '/' ? 'black' : textColor }` }} className='hidden sm:flex'>
           <li className='p-4 hover:opacity-70'>
@@ -54,9 +54,9 @@ const Navbar = ({loading}) => {
           <li className='p-4 hover:opacity-70'>
             <Link href='/explore'>Explore India</Link>
           </li>
-          <li className='p-4 hover:opacity-70'>
+          {/* <li className='p-4 hover:opacity-70'>
             <Link href='/temples-in-world'>Hindu Temples Outside India</Link>
-          </li>
+          </li> */}
           {/* <li className='p-4 hover:opacity-70'>
             <Link href='/about'>About</Link>
           </li> */}

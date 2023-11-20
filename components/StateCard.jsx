@@ -31,7 +31,7 @@ const StateCard = () => {
             </p>
             <Link href="/" >
                    {/* rome-ignore lint/a11y/useValidAnchor: <explanation> */}
-                   <a className="text-primary px-5 py-2 hover:text-white hover:bg-black border text-base font-semibold cursor-pointer">Read More</a>
+                   <p className="text-primary px-5 py-2 hover:text-white hover:bg-black border text-base font-semibold cursor-pointer">Read More</p>
             </Link>
           </div>
         </div>

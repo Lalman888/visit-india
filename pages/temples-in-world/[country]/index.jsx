@@ -61,17 +61,17 @@ const Place = ({ placearray }) => {
                 <ul>
                 <li>
                   <Link href="/">
-                      <a className="text-gray-500 hover:text-gray-900">Home</a>
+                      <p className="text-gray-500 hover:text-gray-900">Home</p>
                     </Link>
                   </li>
                   <li>
                   <Link href="/explore">
-                      <a className="text-gray-500 hover:text-gray-900">Explore</a>
+                      <p className="text-gray-500 hover:text-gray-900">Explore</p>
                     </Link>
                   </li>
                   <li>
                     <Link href={`/explore/${StateName}`}>
-                      <a className="text-gray-500 hover:text-gray-900">{StateName.charAt(0).toUpperCase() + StateName.slice(1)}</a>
+                      <p className="text-gray-500 hover:text-gray-900">{StateName.charAt(0).toUpperCase() + StateName.slice(1)}</p>
                     </Link>
                   </li>
                   <li>

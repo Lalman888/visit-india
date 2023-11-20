@@ -45,31 +45,7 @@ html {
 }
 
 
-.custom-img-1{
-  background-image: url('../public/Home/Konarka_Temple.jpg')
-}
 
-.custom-img-2 {
-  background-image: url('../public/Home/Taj_mahal.avif')
-}
-
-.custom-img-3{
-  background-image: url('../public/Home/golden_temple.webp')
-}
-.custom-img-4{
-  background-image: url('../public/Home/Hampi_virupaksha_temple.jpg')
-}
-
-.custom-img-5{
-  background-image: url('../public/Home/mahadev-1008-shivlinga-khajuraho.jpg')
-}
-
-.custom-img-6{
-  background-image: url('../public/Home/Wat-Thai-Temple-Kushinagar.webp')
-}
-.custom-img-w{
-  background-image: url('../public/Angkorvat.jpg')
-}
 
 .explore {
   background: transparent;

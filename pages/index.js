@@ -53,20 +53,21 @@ export default function Home({placed,temples,forts,mountains,states}) {
         { 
           placed.map((p) => (
             <Link href={`/explore/${p.stateslug}/${p.slug.current}`} key={p._id}>
-            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size" >
+            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size lg:min-h-[640px]" >
           <Image
             className="md:w-full scale-100 hover:scale-110 duration-700 "
             src={builder.image(p.mainImage).url() || "/Home/Taj_mahal.avif"}
             alt={p.title}
             width={285}
             height={190}
+            style={{height: '198px'}}
           />
           <div className="px-6 py-8">
             <div className="font-bold text-xl mb-2">
               {p.title}
             </div>
             <p className="text-gray-700 text-base">
-              {p.description}
+              {p.description.slice(0, 300)} 
             </p>
           </div>
         </div>
@@ -87,13 +88,14 @@ export default function Home({placed,temples,forts,mountains,states}) {
         {
           temples.map((t) => (
             <Link href={`/explore/${t.stateslug}/${t.slug.current}`} key={t._id}>
-            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size" >
+            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size lg:min-h-[640px]" >
           <Image
             className="w-full scale-100 hover:scale-110 duration-700 "
             src={builder.image(t.mainImage).url() || "/Home/Taj_mahal.avif"}
             alt={t.title}
             width={285}
             height={190}
+            style={{height: '198px'}}
           />
           <div className="px-6 py-8">
             <div className="font-bold text-xl mb-2">{
@@ -123,13 +125,14 @@ export default function Home({placed,temples,forts,mountains,states}) {
         {
           forts.map((f) => (
             <Link href={`/explore/${f.stateslug}/${f.slug.current}`} key={f._id}>
-            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size" >
+            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size lg:min-h-[640px]" >
           <Image
             className="w-full scale-100 hover:scale-110 duration-700 "
             src={builder.image(f.mainImage).url() || "/Home/Taj_mahal.avif"}
             alt={f.title}
             width={285}
             height={190}
+            style={{height: '198px'}}
           />
           <div className="px-6 py-8">
             <div className="font-bold text-xl mb-2">{
@@ -160,13 +163,14 @@ export default function Home({placed,temples,forts,mountains,states}) {
         {
           mountains.map((m) => (
             <Link href={`/explore/${m.stateslug}/${m.slug.current}`} key={m._id}>
-            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size" >
+            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size lg:min-h-[640px]" >
           <Image
             className="w-full scale-100 hover:scale-110 duration-700 "
             src={builder.image(m.mainImage).url() || "/Home/Taj_mahal.avif"}
             alt={m.title}
             width={285}
             height={190}
+            style={{height: '198px'}}
           />
           <div className="px-6 py-8">
             <div className="font-bold text-xl mb-2">{
@@ -196,13 +200,14 @@ export default function Home({placed,temples,forts,mountains,states}) {
         {
           states.map((s) => (
             <Link href={`/explore/${s.slug.current}`} key={s._id}>
-            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size" >
+            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size lg:min-h-[640px]" >
           <Image
             className="w-full scale-100 hover:scale-110 duration-700 "
             src={builder.image(s.mainImage).url() || "/Home/Taj_mahal.avif"}
             alt={s.title}
             width={285}
             height={190}
+            style={{height: '198px'}}
           />
           <div className="px-6 py-8">
             <div className="font-bold text-xl mb-2">{

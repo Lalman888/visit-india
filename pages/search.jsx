@@ -63,7 +63,7 @@ export default function SearchResults() {
                   </p>
                   <Link href={`/explore/${result.slug.current}`} >
                          {/* rome-ignore lint/a11y/useValidAnchor: <explanation> */}
-                         <a className="text-emerald-700 hover:animate-bounce hover:block hover:duration-100 hover:transition-all px-5 py-2 hover:text-white hover:bg-emerald-700 border text-base font-semibold cursor-pointer">Read More</a>
+                         <p className="text-emerald-700 hover:animate-bounce hover:block hover:duration-100 hover:transition-all px-5 py-2 hover:text-white hover:bg-emerald-700 border text-base font-semibold cursor-pointer">Read More</p>
                   </Link>
                 </div>
               </div>

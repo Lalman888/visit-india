@@ -16,6 +16,7 @@
     "@sanity/image-url": "^1.0.1",
     "@vercel/analytics": "^0.1.8",
     "daisyui": "^2.46.0",
+    "framer-motion": "^10.16.5",
     "google-map-react": "^2.2.0",
     "gsap": "^3.11.4",
     "next": "13.5.4",

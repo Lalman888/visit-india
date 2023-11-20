@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }) {
     /> */}
       {pageload ? (
         <>
-          <div className="w-full h-screen flex items-center justify-center">
+          <div className="w-full bg-white/90 h-screen flex items-center justify-center">
             <ThreeCircles
               height="100"
               width="100"

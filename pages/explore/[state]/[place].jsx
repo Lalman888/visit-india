@@ -21,7 +21,7 @@ const Place = ({ placearray }) => {
   const router = useRouter();
   const { place } = router.query;
   // console.log('placearray  ', StateNamequery)
-  // console.log('place  ', placearray)
+  console.log('place  ', placearray)
   const location = {
     lat: placearray.location.lat,
     lng: placearray.location.lng,
@@ -61,17 +61,17 @@ const Place = ({ placearray }) => {
                 <ul>
                 <li>
                   <Link href="/">
-                      <a className="text-gray-500 hover:text-gray-900">Home</a>
+                      <p className="text-gray-500 hover:text-gray-900">Home</p>
                     </Link>
                   </li>
                   <li>
                   <Link href="/explore">
-                      <a className="text-gray-500 hover:text-gray-900">Explore</a>
+                      <p className="text-gray-500 hover:text-gray-900">Explore</p>
                     </Link>
                   </li>
                   <li>
                     <Link href={`/explore/${StateName}`}>
-                      <a className="text-gray-500 hover:text-gray-900">{StateName.charAt(0).toUpperCase() + StateName.slice(1)}</a>
+                      <p className="text-gray-500 hover:text-gray-900">{StateName.charAt(0).toUpperCase() + StateName.slice(1)}</p>
                     </Link>
                   </li>
                   <li>
@@ -107,13 +107,13 @@ export async function getServerSideProps(context) {
 
   const Placequery = `*[_type == "place" && slug.current == '${place}'  ][0] `;
   const placearray = await client.fetch(Placequery);
-  // console.log('placearray', placearray)
   const StateNamequery =  await client.fetch(`*[_type == "place" && slug.current == '${place}'][0] {
     "stateName": *[_type == "state" && references(^._id)]{
       ...,
       title
     }
   } `);
+  // console.log('placearray', StateNamequery)
 
   return {
     props: {

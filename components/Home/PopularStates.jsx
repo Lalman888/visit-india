@@ -13,7 +13,7 @@ const PopularStates = ({ppstates: states}) => {
         {/* Card */}
          {
           states.map((s) => (
-            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size" key={s._id}>
+            <div className="rounded-md overflow-hidden shadow-lg cursor-pointer card-size lg:min-h-[640px]" key={s._id}>
           <Image
             className="w-full scale-100 hover:scale-110 duration-700 "
             src={urlFor(s?.mainImage).url() || "/Home/Taj_mahal.avif"}
