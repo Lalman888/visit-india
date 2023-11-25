@@ -58,7 +58,7 @@ const Hero = ({ heading, message }) => {
         transition={{ duration: 2, ease: 'easeInOut' }} // Adjusted duration and added ease function
         className="absolute inset-0 bg-black/70 z-[2]"
       /> */}
-      <div className="absolute inset-0 flex items-center  justify-center">
+      <div className="absolute bg-black/30 inset-0 flex items-center  justify-center">
         <div className="text-center text-white/90">
           <h2 className="text-5xl font-bold">{heading}</h2>
           <p className="py-5 max-w-2xl text-xl">{message}</p>

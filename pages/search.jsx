@@ -31,7 +31,7 @@ export default function SearchResults() {
   return (
     <>
     <section className='lg:pt-[9%] pt-[38%] max-w-[1240px] py-10 px-8 m-auto bg-white text-black '>
-      <h1 className='text-3xl font-bold'>Search Results</h1>
+      <h1 className='text-3xl font-semibold'>Search Results for {router.query.q}</h1>
       <ul className='pt-7 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 sm:gap-16 lg:gap-32'>
         { results ? results?.map(result => (
           <Fragment key={result._id}>
