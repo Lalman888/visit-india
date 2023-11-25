@@ -9,9 +9,9 @@ export default function SearchResults() {
   const router = useRouter()
   const [results, setResults] = useState([])
   const client = createClient({
-    projectId: "itt58wsk",
-    dataset: "production",
-    apiVersion: "2022-12-25",
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+    apiVersion: "2021-03-25",
     useCdn: false,
   });
   const builder = imageUrlBuilder(client);

@@ -27,9 +27,9 @@ const Explore = ({ states }) => {
     setIsOpen(true);
   }
   const client = createClient({
-    projectId: "itt58wsk",
-    dataset: "production",
-    apiVersion: "2022-12-25",
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+    apiVersion: "2021-03-25",
     useCdn: false,
   });
   const builder = imageUrlBuilder(client);
@@ -184,11 +184,11 @@ const Explore = ({ states }) => {
 export default Explore;
 
 export async function getServerSideProps(context) {
-  console.log("context", context.query);
+  // console.log("context", context.query);
   const client = createClient({
-    projectId: "itt58wsk",
-    dataset: "production",
-    apiVersion: "2022-12-26",
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+    apiVersion: "2021-03-25",
     useCdn: false,
   });
 
