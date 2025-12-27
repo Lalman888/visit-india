@@ -40,10 +40,9 @@ const Footer = () => {
                         <ul className="space-y-4">
                             <li><Link href="/" className="hover:text-amber-500 transition-colors">Home</Link></li>
                             <li><Link href="/explore" className="hover:text-amber-500 transition-colors">Explore India</Link></li>
+                            <li><Link href="/plan-trip" className="hover:text-amber-500 transition-colors">Plan Your Trip</Link></li>
                             <li><Link href="/blog" className="hover:text-amber-500 transition-colors">Travel Blog</Link></li>
                             <li><Link href="/about" className="hover:text-amber-500 transition-colors">About India</Link></li>
-                            <li><Link href="/travel-tips" className="hover:text-amber-500 transition-colors">Travel Tips</Link></li>
-                            <li><Link href="/best-time-to-visit" className="hover:text-amber-500 transition-colors">Best Time to Visit</Link></li>
                             <li><Link href="/contact" className="hover:text-amber-500 transition-colors">Contact</Link></li>
                         </ul>
                     </div>
