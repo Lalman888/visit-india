@@ -55,7 +55,7 @@ const Forts = ({ forts }) => {
                         transition={{ delay: 0.2 }}
                         className="text-slate-400 text-lg max-w-2xl m-auto"
                     >
-                        Walk through the corridors of power where kings once ruled. Experience the grandeur of India's military and royal architecture.
+                        Walk through the corridors of power where kings once ruled. Experience the grandeur of India&apos;s military and royal architecture.
                     </motion.p>
                 </div>
             </section>

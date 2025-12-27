@@ -45,7 +45,7 @@ const Custom404 = () => {
                     transition={{ delay: 0.3 }}
                     className="text-slate-400 text-lg mb-10"
                 >
-                    The path you seek does not exist. But don't worry—there are countless beautiful destinations waiting for you.
+                    The path you seek does not exist. But do not worry—there are countless beautiful destinations waiting for you.
                 </motion.p>
 
                 <motion.div

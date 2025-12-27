@@ -96,9 +96,9 @@ const About = () => {
           <ul className="space-y-4 text-slate-700">
             <li><strong>Heritage & History:</strong> Home to 40+ UNESCO World Heritage Sites, including the Taj Mahal, Jaipur, and Hampi.</li>
             <li><strong>Spiritual Journey:</strong> The birthplace of Hinduism, Buddhism, Jainism, and Sikhism. Explore ashrams, temples, and meditation retreats.</li>
-            <li><strong>Culinary Adventure:</strong> A food lover's paradise with cuisines that vary every 100 kilometers.</li>
+            <li><strong>Culinary Adventure:</strong> A food lover&apos;s paradise with cuisines that vary every 100 kilometers.</li>
             <li><strong>Natural Wonders:</strong> From the Thar Desert to the lush Western Ghats, experience breathtaking landscapes.</li>
-            <li><strong>Warm Hospitality:</strong> "Atithi Devo Bhava" (The guest is God) - experience the legendary Indian hospitality.</li>
+            <li><strong>Warm Hospitality:</strong> &quot;Atithi Devo Bhava&quot; (The guest is God) - experience the legendary Indian hospitality.</li>
           </ul>
         </motion.div>
       </section>

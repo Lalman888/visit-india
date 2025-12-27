@@ -55,7 +55,7 @@ const Temples = ({ temples }) => {
                         transition={{ delay: 0.2 }}
                         className="text-slate-400 text-lg max-w-2xl m-auto"
                     >
-                        From the intricate carvings of Khajuraho to the spiritual aura of Varanasi, discover India's most revered temples.
+                        From the intricate carvings of Khajuraho to the spiritual aura of Varanasi, discover India&apos;s most revered temples.
                     </motion.p>
                 </div>
             </section>

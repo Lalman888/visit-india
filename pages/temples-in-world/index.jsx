@@ -32,16 +32,17 @@ const TemplesInWorld = () => {
 
       <div className="sm:grid flex flex-col grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-10 lg:gap-12 px-5 md:px-10 lg:px-12 lg:pl-16 py-5 md:py-10 lg:py-20">
         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
-          <div className="group relative xl:w-110  sm:max-w-md xl:h-96 my-5 rounded-md" key={item+1}>
+          <div className="group relative xl:w-110  sm:max-w-md xl:h-96 my-5 rounded-md" key={item + 1}>
             <img
               className=" object-cover rounded-xl xl:w-110 sm:max-w-md   xl:h-96 "
               src="/Angkorvat.jpg"
+              alt="Hindu Temple"
             />
             <div className="absolute rounded-xl top-0 left-0 w-full h-0 flex flex-col justify-center items-center bg-black/60 opacity-0 group-hover:h-full group-hover:opacity-100 duration-500">
               <Link href="/explore">
-              <h1 className="text-3xl cursor-pointer lg:text-4xl font-semibold text-white hover:text-gray-400">
-                Cambodia
-              </h1>
+                <h1 className="text-3xl cursor-pointer lg:text-4xl font-semibold text-white hover:text-gray-400">
+                  Cambodia
+                </h1>
               </Link>
             </div>
           </div>
