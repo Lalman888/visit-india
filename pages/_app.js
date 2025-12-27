@@ -4,8 +4,7 @@ import "../styles/globals.css";
 import { useState, useEffect } from "react";
 import Loader from "../components/Loader";
 import { Analytics } from "@vercel/analytics/react";
-import {  ThreeCircles } from "react-loader-spinner";
-// import {} from '@next/font/google'
+import { ClipLoader } from "react-spinners";
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
@@ -23,21 +22,15 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-   
+
       {pageload ? (
         <>
           <div className="w-full bg-white/90 h-screen flex items-center justify-center">
-            <ThreeCircles
-              height="100"
-              width="100"
+            <ClipLoader
+              size={100}
               color="#000000"
-              wrapperStyle={{}}
-              wrapperClass=""
-              visible={true}
-              ariaLabel="three-circles-rotating"
-              outerCircleColor=""
-              innerCircleColor=""
-              middleCircleColor=""
+              loading={true}
+              aria-label="Loading spinner"
             />
           </div>
         </>
@@ -65,3 +58,4 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
+

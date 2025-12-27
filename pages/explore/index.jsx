@@ -8,6 +8,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import { createClient } from "next-sanity";
 import { BsSearch } from "react-icons/bs";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 
 const Explore = ({ states }) => {
   let [isOpen, setIsOpen] = useState(false);
@@ -19,13 +20,6 @@ const Explore = ({ states }) => {
     router.push(`/search?q=${query}`);
   };
 
-  function closeModal() {
-    setIsOpen(false);
-  }
-
-  function openModal() {
-    setIsOpen(true);
-  }
   const client = createClient({
     projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
     dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
@@ -33,151 +27,123 @@ const Explore = ({ states }) => {
     useCdn: false,
   });
   const builder = imageUrlBuilder(client);
-  // console.log("places 1 ", states);
+
   return (
-    <>
+    <div className="bg-slate-50 min-h-screen">
       <Head>
-        <title>Explore India</title>
+        <title>Explore the States of India | Visit India</title>
         <meta
           name="description"
-          content="Welcome to Visit India, your ultimate guide to exploring the rich culture and history of India. From the bustling cities to the tranquil countryside, India is a land of diversity and wonder."
+          content="Journey through the diverse states of India, from the majestic mountains to the serene shores."
         />
         <link rel="icon" href="/mountain.ico" />
       </Head>
-      <div className="lg:pt-[10%] pt-[36%] bg-white text-black ">
-        <h1 className="text-6xl lg:pr-28 font-bold text-center">
-          Explore India
-        </h1>
-        <p className="text-center lg:pr-28 text-xl py-5">
-          Explore the beauty of India
-        </p>
-        <div className="flex max-w-[1240px] m-auto justify-end">
-          <BsSearch
-            onClick={openModal}
-            className="text-3xl mr-10 cursor-pointer text-black"
-          />
+
+      {/* Header Section */}
+      <section className="relative pt-32 pb-20 bg-slate-900 overflow-hidden">
+        <div className="absolute inset-0 jaali-overlay opacity-10 pointer-events-none"></div>
+        <div className="max-w-[1400px] m-auto px-6 md:px-12 relative z-10 text-center">
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-amber-500 font-medium tracking-widest uppercase text-sm mb-4 block"
+          >
+            A Continent of Diversity
+          </motion.span>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-white mb-6"
+          >
+            Explore India by States
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-slate-400 text-lg max-w-2xl m-auto mb-10"
+          >
+            Each state offers a unique tapestry of architecture, cuisine, and traditions.
+            Begin your discovery below.
+          </motion.p>
+
+          {/* Search Bar */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3 }}
+            className="max-w-2xl m-auto"
+          >
+            <form onSubmit={handleSubmit} className="relative group">
+              <input
+                type="text"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Search for a state or destination..."
+                className="w-full bg-white/10 border border-white/20 rounded-2xl px-8 py-5 text-white placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:bg-white/15 transition-all backdrop-blur-sm"
+              />
+              <button type="submit" className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-amber-500 rounded-xl text-slate-900 hover:bg-amber-400 transition-colors">
+                <BsSearch size={20} />
+              </button>
+            </form>
+          </motion.div>
         </div>
+      </section>
 
-        <div className="max-w-[1240px] py-10 px-8 m-auto grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 sm:gap-16 lg:gap-32">
-          {/* <StateCard /> */}
-
+      {/* States Grid */}
+      <section className="py-24 px-6 md:px-12 max-w-[1400px] m-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           {states ? (
-            states.map((state) => (
-              <article
-                className="md:hover:shadow-2xl shadow-md md:duration-700 "
+            states.map((state, index) => (
+              <motion.article
                 key={state._id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="group bento-item !h-auto flex flex-col"
               >
-                <div className="mb-10 overflow-hidden rounded-lg state-size">
+                <div className="relative h-72 overflow-hidden">
                   <Image
-                    className="md:w-full"
-                    src={
-                      builder.image(state.mainImage).url() ||
-                      "/Home/Taj_mahal.avif"
-                    }
+                    className="group-hover:scale-110 transition-transform duration-700"
+                    src={builder.image(state.mainImage).url() || "/Home/Taj_mahal.avif"}
                     alt={state.title}
-                    width={326}
-                    height={217}
+                    layout="fill"
+                    objectFit="cover"
                   />
-                  <div className="relative top-3 ">
-                    <span className="text-primary bg-[#1324e4] px-3 py-1  text-white text-sm font-semibold">
-                      {state.stateCategory}
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-amber-500/90 backdrop-blur-sm text-slate-900 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+                      {state.stateCategory || 'State'}
                     </span>
                   </div>
-                  <div className="p-8 text-center sm:p-9 md:p-7 xl:p-9">
-                    <h5>
-                      <p
-                        // href="/n"
-                        className="text-dark mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]"
-                      >
-                        {state.title}
-                      </p>
-                    </h5>
-                    <p className="text-body-color mb-7 text-base leading-relaxed">
-                      {state.description}
-                    </p>
-                    <Link href={`/explore/${state.slug.current}`}>
-                      {/* rome-ignore lint/a11y/useValidAnchor: <explanation> */}
-                      <p className="text-emerald-700 hover:block hover:duration-100 hover:transition-all px-5 py-2 hover:text-white hover:bg-emerald-700 border text-base font-semibold cursor-pointer">
-                        Read More
-                      </p>
+                </div>
+
+                <div className="p-8 flex-grow flex flex-col">
+                  <h3 className="text-2xl mb-4 font-serif text-slate-900 group-hover:text-amber-600 transition-colors">
+                    {state.title}
+                  </h3>
+                  <p className="text-slate-600 mb-8 line-clamp-3 text-sm leading-relaxed">
+                    {state.description}
+                  </p>
+                  <div className="mt-auto">
+                    <Link href={`/explore/${state.slug.current}`} className="inline-flex items-center text-slate-900 font-bold group/link">
+                      Explore State
+                      <span className="ml-2 group-hover/link:translate-x-2 transition-transform">→</span>
                     </Link>
                   </div>
                 </div>
-              </article>
+              </motion.article>
             ))
           ) : (
-            <h1>loading</h1>
+            <div className="col-span-full py-20 text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amber-500 m-auto mb-4"></div>
+              <p className="text-slate-500">Loading states...</p>
+            </div>
           )}
         </div>
-      </div>
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
-          </Transition.Child>
-
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel className="w-full h-[80%] max-w-6xl transform overflow-hidden rounded-2xl bg-white p-14 text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-xl font-medium leading-6 text-gray-900"
-                  >
-                    Search for the place
-                  </Dialog.Title>
-                  <div className="mt-2">
-                    <form onSubmit={handleSubmit}
-                    className="flex items-center justify-center w-full"
-                    >
-                      <input
-                        type="text"
-                        value={query}
-                        onChange={(e) => setQuery(e.target.value)}
-                        placeholder="Search for the place"
-                        className="border-2 w-full border-gray-200 dark:bg-gray-100 outline-none p-2 rounded-lg"
-                      />
-                      <button
-                        className="bg-black text-white px-8 py-3 rounded-lg ml-7"
-                        type="submit"
-                      >
-                        Search
-                      </button>
-                    </form>
-                  </div>
-
-                  <div className="mt-10">
-                    <button
-                      type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={closeModal}
-                    >
-                      Close
-                    </button>
-                  </div>
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
-          </div>
-        </Dialog>
-      </Transition>
-    </>
+      </section>
+    </div>
   );
 };
 

@@ -1,0 +1,144 @@
+import React from 'react';
+import Head from 'next/head';
+import Image from 'next/image';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import imageUrlBuilder from "@sanity/image-url";
+import { createClient } from "next-sanity";
+import SEOHead from '../../components/SEO/SEOHead';
+import { BreadcrumbSchema } from '../../components/SEO/StructuredData';
+
+const Forts = ({ forts }) => {
+    const client = createClient({
+        projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+        dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+        apiVersion: "2021-03-25",
+        useCdn: false,
+    });
+    const builder = imageUrlBuilder(client);
+
+    return (
+        <div className="bg-slate-50 min-h-screen">
+            <SEOHead
+                title="Historic Forts of India - Royal Heritage & Architecture"
+                description="Discover India's magnificent forts, from the imposing Mehrangarh to the romantic Amber Fort. Explore centuries of royal history, military architecture, and cultural heritage."
+                canonical="/explore/forts"
+            />
+            <BreadcrumbSchema items={[
+                { name: "Home", url: "/" },
+                { name: "Explore", url: "/explore" },
+                { name: "Forts" }
+            ]} />
+
+            {/* Hero */}
+            <section className="relative pt-32 pb-20 bg-slate-900 overflow-hidden">
+                <div className="absolute inset-0 jaali-overlay opacity-10"></div>
+                <div className="max-w-[1400px] m-auto px-6 md:px-12 relative z-10 text-center">
+                    <motion.span
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-amber-500 font-medium tracking-widest uppercase text-sm mb-4 block"
+                    >
+                        Royal Heritage
+                    </motion.span>
+                    <motion.h1
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                        className="text-white mb-6"
+                    >
+                        Historic Forts of India
+                    </motion.h1>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                        className="text-slate-400 text-lg max-w-2xl m-auto"
+                    >
+                        Walk through the corridors of power where kings once ruled. Experience the grandeur of India's military and royal architecture.
+                    </motion.p>
+                </div>
+            </section>
+
+            {/* Forts Grid */}
+            <section className="max-w-[1400px] m-auto px-6 md:px-12 py-24">
+                {forts && forts.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        {forts.map((fort, index) => (
+                            <motion.article
+                                key={fort._id}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.05 }}
+                                className="group bento-item !h-auto flex flex-col"
+                            >
+                                <div className="relative h-72 overflow-hidden">
+                                    <Image
+                                        className="group-hover:scale-110 transition-transform duration-700"
+                                        src={builder.image(fort.mainImage).url() || "/Home/Taj_mahal.avif"}
+                                        alt={fort.title}
+                                        layout="fill"
+                                        objectFit="cover"
+                                    />
+                                    <div className="absolute top-4 left-4">
+                                        <span className="bg-amber-500/90 backdrop-blur-sm text-slate-900 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+                                            Fort
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div className="p-8 flex-grow flex flex-col">
+                                    <h3 className="text-2xl mb-4 font-serif text-slate-900 group-hover:text-amber-600 transition-colors">
+                                        {fort.title}
+                                    </h3>
+                                    <p className="text-slate-600 mb-8 line-clamp-3 text-sm leading-relaxed">
+                                        {fort.description}
+                                    </p>
+                                    <div className="mt-auto">
+                                        <Link href={`/explore/${fort.stateSlug}/${fort.slug?.current}`} className="inline-flex items-center text-slate-900 font-bold group/link">
+                                            Explore Fort
+                                            <span className="ml-2 group-hover/link:translate-x-2 transition-transform">→</span>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </motion.article>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center py-20">
+                        <p className="text-slate-500">Loading forts...</p>
+                    </div>
+                )}
+            </section>
+        </div>
+    );
+};
+
+export default Forts;
+
+export async function getServerSideProps() {
+    const client = createClient({
+        projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+        dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+        apiVersion: "2021-03-25",
+        useCdn: false,
+    });
+
+    const forts = await client.fetch(`
+    *[_type == "place" && popularCount == 8]{
+      _id,
+      title,
+      description,
+      slug,
+      mainImage,
+      "stateSlug": *[_type == "states" && references(^._id)][0].slug.current
+    }
+  `);
+
+    return {
+        props: {
+            forts,
+        },
+    };
+}

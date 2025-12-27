@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://visitindia.com/sitemap.xml
+
+# Disallow admin and API routes
+Disallow: /api/
+Disallow: /studio/

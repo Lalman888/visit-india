@@ -2,76 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
-h3 {
-  @apply text-4xl font-bold pt-7 pb-6 flex justify-center;
-}
-h4 {
-  @apply text-xl font-semibold;
-}
-p {
-  @apply py-2;
-}
- 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
-html {
-  scroll-behavior: smooth;
-  font-family: 'Raleway', sans-serif;
-  /* cursor: ; */
+:root {
+  --primary: #0F172A;
+  --primary-light: #1E293B;
+  --accent: #D4AF37; /* Royal Gold */
+  --accent-light: #F5E6AC;
+  --background: #F8FAFC;
+  --text-main: #0F172A;
+  --text-muted: #475569;
+  --marigold: #F59E0B;
+  --indigo-heritage: #312E81;
 }
 
-.w-110{
-  width: 420px;
-}
-
-/* .cursor{
-  position: fixed;
-  background: rgb(18, 145, 214);
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 999;
-  will-change: transform;
-  margin: -10px 0 0 -10px;
-  user-select: none;
-  pointer-events: none;
-  transition: 0.2s ease;
-
-} */
-
-.card-size>span{
-  width: 360px!important;
-  height: 224px!important;
-}
-
-
-
-
-.explore {
-  background: transparent;
-  background: linear-gradient(to left, transparent 50%, white 50%) right;
-  background-size: 200%;
-  transition: .5s ease-out;
-}
-.explore:hover {
-  background-position: left;
-}
-
-
-::-moz-selection {
-  background: #f3f4f6;
-  color: #1f2937;
-}
-
-::selection {
-  background: #b5b7bb;
-  color: #1f2937;
-}
-
-@media screen and (max-width: 768px) {
-  .state-size>span{
-    width: 360px!important;
-    height: 218px!important;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    @apply antialiased;
   }
   
+  body {
+    @apply bg-slate-50 text-slate-900;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, .font-serif {
+    font-family: 'Playfair Display', serif;
+  }
+
+  h1 { @apply text-5xl md:text-7xl font-bold tracking-tight; }
+  h2 { @apply text-4xl md:text-5xl font-semibold; }
+  h3 { @apply text-2xl md:text-3xl font-medium; }
+}
+
+@layer components {
+  /* Bento Grid Utilities */
+  .bento-grid {
+    @apply grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[200px];
+  }
+
+  .bento-item {
+    @apply relative overflow-hidden rounded-3xl bg-white border border-slate-200/50 shadow-sm transition-all duration-500 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .bento-item-large { @apply md:col-span-2 md:row-span-2; }
+  .bento-item-tall { @apply md:row-span-2; }
+  .bento-item-wide { @apply md:col-span-2; }
+
+  /* Jaali Pattern Overlay */
+  .jaali-overlay {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l15 15-15 15-15-15zM0 30l15 15-15 15L-15 45zM60 30l15 15-15 15-15-15zM30 60l15 15-15 15-15-15z' fill='%23D4AF37' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+    mask-image: linear-gradient(to bottom, black, transparent);
+  }
+
+  /* Glassmorphism */
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/20;
+  }
+
+  /* Modern Buttons */
+  .btn-primary {
+    @apply px-8 py-3 bg-slate-900 text-white rounded-full font-medium transition-all hover:bg-slate-800 hover:scale-105 active:scale-95 shadow-lg shadow-slate-900/20;
+  }
+
+  .btn-accent {
+    @apply px-8 py-3 bg-[#D4AF37] text-white rounded-full font-medium transition-all hover:bg-[#B8962E] hover:scale-105 active:scale-95 shadow-lg shadow-[#D4AF37]/20;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-400 rounded-full border-4 border-slate-100 hover:bg-slate-500;
+}
+
+/* Animations */
+@keyframes lotus-bloom {
+  0% { transform: scale(0.8) opacity(0); }
+  100% { transform: scale(1) opacity(1); }
+}
+
+.animate-lotus {
+  animation: lotus-bloom 1s ease-out forwards;
 }

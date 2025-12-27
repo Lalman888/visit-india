@@ -6,8 +6,9 @@ import imageUrlBuilder from "@sanity/image-url";
 import { createClient } from "next-sanity";
 import PortableText from "react-portable-text"
 import Link from "next/link";
+import { motion } from "framer-motion";
 
-const State = ({states,placearray}) => {
+const State = ({ states, placearray }) => {
   const client = createClient({
     projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
     dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
@@ -17,109 +18,133 @@ const State = ({states,placearray}) => {
   const builder = imageUrlBuilder(client);
   const router = useRouter();
   const { state } = router.query;
-  
-  // console.log('states', states)
-  // console.log('placearray', placearray.place)
-  // console.log('placearray p', placearray)
 
   return (
-    <>
+    <div className="bg-slate-50 min-h-screen">
       <Head>
-        <title>{state}</title>
-        <meta name="description" content="Welcome to Visit India, your ultimate guide to exploring the rich culture and history of India. From the bustling cities to the tranquil countryside, India is a land of diversity and wonder." />
+        <title>{states.title} | Discover India</title>
+        <meta name="description" content={states.description} />
         <link rel="icon" href="/mountain.ico" />
       </Head>
-      <div className="lg:pt-[2%] pt-[8%] bg-white text-black ">
-        <div className="flex  transition-all duration-200 ease-linear items-center justify-center h-[68vh] bg-local bg-center bg-cover  "
-        style={{backgroundImage: `url('${builder.image(states.mainImage).url()}')`}}
-        >
-          <div className='absolute top-[4%] h-[68vh] left-0 right-0 bottom-0 bg-black/20 z-[2]' />
-          <div className="relative top-[1%] p-5 text-white z-[2] mt-[-10rem]">
-            <h1 className="lg:text-8xl text-3xl font-bold">{states.title}</h1>
-          </div>
+
+      {/* State Hero */}
+      <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
+        <Image
+          src={builder.image(states.mainImage).url()}
+          layout="fill"
+          objectFit="cover"
+          alt={states.title}
+          priority
+          className="brightness-75"
+        />
+        <div className="absolute inset-0 jaali-overlay opacity-20"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
+
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+          <motion.nav
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-8"
+          >
+            <ul className="flex items-center space-x-2 text-white/70 text-sm font-medium uppercase tracking-widest">
+              <li><Link href="/" className="hover:text-amber-500 transition-colors">Home</Link></li>
+              <li><span className="mx-2">/</span></li>
+              <li><Link href="/explore" className="hover:text-amber-500 transition-colors">Explore</Link></li>
+              <li><span className="mx-2">/</span></li>
+              <li className="text-amber-500">{states.title}</li>
+            </ul>
+          </motion.nav>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-white text-6xl md:text-8xl mb-4"
+          >
+            {states.title}
+          </motion.h1>
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: 100 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="h-1 bg-amber-500"
+          ></motion.div>
         </div>
-         <div className="max-w-7xl mx-auto px-4 py-9 sm:px-6 lg:px-8 text-black">
-            <div className="py-10">
-            <div className="py-4">
-              <div className="text-sm breadcrumbs">
-              <ul>
-                  <li>
-                <Link href="/">
-                  <p className="text-gray-500 hover:text-gray-900">Home</p>
-                </Link>
-                </li>
-                <li>
-                <Link href="/explore">
-                  <p className="text-gray-500 hover:text-gray-900">Explore</p>
-                </Link>
-                </li>
-                <li>
-                   {states.title}
-                </li>
-              </ul>
-                </div>
-                </div>
-               <div className="lg:text-lg text-sm leading-7 font-medium pb-5 ">
-               <PortableText
-              // Pass in block content straight from Sanity.io
+      </section>
+
+      {/* Content Section */}
+      <section className="max-w-[1000px] m-auto px-6 py-24">
+        <div className="prose prose-lg prose-slate max-w-none">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-slate-700 leading-relaxed font-serif text-xl md:text-2xl"
+          >
+            <PortableText
               content={states.body}
-              projectId="itt58wsk"
-              dataset="production"
-              // Optionally override marks, decorators, blocks, etc. in a flat
-              // structure without doing any gymnastics
+              projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
+              dataset={process.env.NEXT_PUBLIC_SANITY_DATASET}
               serializers={{
-                h5: (props) => <h5 style={{ color: "red" }} {...props} />,
-                li: ({ children }) => <li className="special-list-item">{children}</li>,
-                ul: ({ children }) => <ul className="special-list">{children}</ul>,
-                span: ({ children }) => <span className="special-span">{children}</span>,
+                h5: (props) => <h5 className="text-amber-600 font-bold mt-12 mb-4 uppercase tracking-widest text-sm" {...props} />,
+                li: ({ children }) => <li className="mb-2 list-disc ml-6">{children}</li>,
+                ul: ({ children }) => <ul className="my-6">{children}</ul>,
+                normal: ({ children }) => <p className="mb-8">{children}</p>,
               }}
             />
-               </div>
-            </div>
-            <div className="pb-10">
-                 <h2 className="lg:text-7xl text-xl flex justify-center leading-6 font-semibold "> 
-                 Places to Visit
-                  </h2>  
-
-            </div>
-            <div className="pb-10 ">
-
-            <div className="max-w-7xl py-10  m-auto grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 lg:gap-8 gap-24">
-        {/* Card */}
-        {
-          placearray.place.map((t) => (
-            <div className="rounded-md overflow-hidden shadow-lg card-size" key={t._id}>
-          <Image
-            className="w-full scale-100 hover:scale-110 duration-700 "
-            src={builder.image(t.mainImage).url() || "/Home/Taj_mahal.avif"}
-            alt={t.title}
-            width={285}
-            height={190}
-            style={{height: '210px'}}
-          />
-          <Link href={`/explore/${state}/${t.slug.current}`}>
-          <div className="px-6 py-8 cursor-pointer">
-            <div className="font-bold text-xl mb-2">{
-              t.title
-            }</div>
-            <p className="text-gray-700 text-base">
-            {
-              t.description
-            }
-            </p>
-          </div>
-          </Link>
+          </motion.div>
         </div>
-          ))
-        }
-      </div>
+      </section>
 
- 
-            </div>
+      {/* Places to Visit Grid */}
+      <section className="bg-slate-900 py-24 px-6 md:px-12 relative overflow-hidden">
+        <div className="absolute inset-0 jaali-overlay opacity-5 pt-32"></div>
+
+        <div className="max-w-[1400px] m-auto relative z-10">
+          <div className="text-center mb-16">
+            <span className="text-amber-500 font-medium tracking-widest uppercase text-sm mb-4 block">Unforgettable Experiences</span>
+            <h2 className="text-white">Places to Visit in {states.title}</h2>
           </div>
 
-      </div>
-    </>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {placearray.place.map((t, index) => (
+              <motion.article
+                key={t._id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="group bento-item !bg-slate-800 border-slate-700 relative overflow-hidden rounded-3xl"
+              >
+                <Link href={`/explore/${state}/${t.slug.current}`}>
+                  <div className="relative h-64 overflow-hidden">
+                    <Image
+                      className="group-hover:scale-110 transition-transform duration-700 brightness-90 group-hover:brightness-100"
+                      src={builder.image(t.mainImage).url() || "/Home/Taj_mahal.avif"}
+                      alt={t.title}
+                      layout="fill"
+                      objectFit="cover"
+                    />
+                  </div>
+                  <div className="p-8">
+                    <h3 className="text-white text-2xl mb-4 font-serif group-hover:text-amber-500 transition-colors">
+                      {t.title}
+                    </h3>
+                    <p className="text-slate-400 text-sm line-clamp-3 mb-6 leading-relaxed">
+                      {t.description}
+                    </p>
+                    <div className="flex items-center text-amber-500 font-bold group/btn">
+                      Discover Details
+                      <span className="ml-2 group-hover/btn:translate-x-2 transition-transform">→</span>
+                    </div>
+                  </div>
+                </Link>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 
@@ -133,7 +158,6 @@ export async function getServerSideProps(context) {
     apiVersion: "2021-03-25",
     useCdn: false,
   });
-  // console.log('state', state)
 
   const Statequery = `*[_type == "states" && slug.current == '${state}'  ][0] `;
   const states = await client.fetch(Statequery);
@@ -147,8 +171,6 @@ export async function getServerSideProps(context) {
       
     }`
   );
-  // console.log('placearray p', placearray)
-  // console.log('states q', states)
 
   return {
     props: {
@@ -157,6 +179,3 @@ export async function getServerSideProps(context) {
     },
   };
 }
-
-
-

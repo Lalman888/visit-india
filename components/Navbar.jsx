@@ -3,110 +3,116 @@ import React, { useState, useEffect } from 'react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const Navbar = ({loading}) => {
+const Navbar = ({ loading }) => {
   const [nav, setNav] = useState(false);
-  const [color, setColor] = useState('transparent');
-  const [textColor, setTextColor] = useState('white');
+  const [isScrolled, setIsScrolled] = useState(false);
   const router = useRouter();
-  const [logoAdd, setLogoAdd] = useState('/logo.png')
-  
-  
+
+  const navLinks = [
+    { title: 'Home', path: '/' },
+    { title: 'Explore', path: '/explore' },
+    { title: 'Blog', path: '/blog' },
+    { title: 'Contact', path: '/contact' },
+  ];
 
   const handleNav = () => {
     setNav(!nav);
   };
 
   useEffect(() => {
-    const changeColor = () => {
-      if (window.scrollY >= 90 && router.pathname === '/') {
-        setColor('#ffffff');
-        setTextColor('#000000');
-        setLogoAdd('/logo_b.png')
-      } else {
-        
-        setColor('transparent');
-        setTextColor('#ffffff');
-        setLogoAdd('/logo.png')
-      }
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY >= 50);
     };
-    window.addEventListener('scroll', changeColor);
-    
-    // console.log(router.pathname);
-  }, [router.pathname]);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const isHome = router.pathname === '/';
 
   return (
-    <div
-      style={{ backgroundColor: `${router.pathname === '/' ? color : 'black'} ` }}
-      className='fixed left-0 top-0 w-full z-10 ease-in duration-300'
+    <nav
+      className={`fixed left-0 top-0 w-full z-50 transition-all duration-500 ${isScrolled || !isHome ? 'glass py-3 shadow-md' : 'py-6'
+        }`}
     >
-      <div className='max-w-[1240px] m-auto flex justify-between items-center p-4 text-white'>
-        <Link href='/'>
-          {/* <h1 style={{ color: `${ loading && router.pathname === '/' ? 'black' : textColor }  ` }} className='font-bold cursor-pointer text-4xl'>
-            Captur
-          </h1> */}
-          <Image className='cursor-pointer' src={logoAdd} width={110} height={30} alt="logo" />
+      <div className='max-w-[1400px] m-auto flex justify-between items-center px-6 md:px-12'>
+        <Link href='/' className='flex items-center space-x-2'>
+          <span className={`text-2xl md:text-3xl font-serif font-bold tracking-tight transition-colors duration-300 ${isScrolled || !isHome ? 'text-slate-900' : 'text-white'
+            }`}>
+            Visit India
+          </span>
         </Link>
-        <ul style={{ color: `${ loading && router.pathname === '/' ? 'black' : textColor }` }} className='hidden sm:flex'>
-          <li className='p-4 hover:opacity-70'>
-            <Link href='/'>Home</Link>
-          </li>
-          <li className='p-4 hover:opacity-70'>
-            <Link href='/explore'>Explore India</Link>
-          </li>
-          {/* <li className='p-4 hover:opacity-70'>
-            <Link href='/temples-in-world'>Hindu Temples Outside India</Link>
-          </li> */}
-          {/* <li className='p-4 hover:opacity-70'>
-            <Link href='/about'>About</Link>
-          </li> */}
-          <li className='p-4 hover:opacity-70'>
-            <Link href='/contact'>Contact</Link>
+
+        {/* Desktop Menu */}
+        <ul className={`hidden md:flex items-center space-x-10 font-medium transition-colors duration-300 ${isScrolled || !isHome ? 'text-slate-900' : 'text-white/90'
+          }`}>
+          {navLinks.map((link) => (
+            <li key={link.path} className='relative group'>
+              <Link href={link.path} className='hover:text-amber-500 transition-colors'>
+                {link.title}
+              </Link>
+              <span className='absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full'></span>
+            </li>
+          ))}
+          <li>
+            <Link href='/explore' className={`btn-accent !px-6 !py-2 !text-sm ${!isScrolled && isHome ? 'bg-white !text-slate-900 hover:bg-slate-100' : ''
+              }`}>
+              Plan Your Trip
+            </Link>
           </li>
         </ul>
 
         {/* Mobile Button */}
-        {/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-        <div onClick={handleNav} className='block sm:hidden z-10'>
+        <div onClick={handleNav} className='md:hidden z-50 cursor-pointer'>
           {nav ? (
-            <AiOutlineClose size={20} style={{ color: 'white' }} />
+            <AiOutlineClose size={24} className='text-white' />
           ) : (
-            <AiOutlineMenu size={20} style={{ color: `${ loading && router.pathname === '/' ? 'black' : textColor }` }} />
+            <AiOutlineMenu size={24} className={isScrolled || !isHome ? 'text-slate-900' : 'text-white'} />
           )}
         </div>
-        {/* Mobile Menu */}
-        <div
-          className={
-            nav
-              ? 'sm:hidden absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center w-full h-screen bg-black text-center ease-in duration-300'
-              : 'sm:hidden absolute top-0 left-[-100%] right-0 bottom-0 flex justify-center items-center w-full h-screen bg-black text-center ease-in duration-300'
-          }
-        >
-          <ul>
-            {/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-            <li onClick={handleNav} className='p-4 text-4xl hover:text-gray-500'>
-              <Link href='/'>Home</Link>
-            </li>
-            {/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-            <li onClick={handleNav} className='p-4 text-4xl hover:text-gray-500'>
-              <Link href='/explore'>Explore India</Link>
-            </li>
-            {/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-            <li onClick={handleNav} className='p-4 text-4xl hover:text-gray-500'>
-            <Link href='/temples-in-world'>Hindu Temples Outside India</Link>
-            </li>
-            {/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-            {/* <li onClick={handleNav} className='p-4 text-4xl hover:text-gray-500'>
-              <Link href='/work'>Work</Link>
-            </li> */}
-            {/* rome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-            <li onClick={handleNav} className='p-4 text-4xl hover:text-gray-500'>
-              <Link href='/contact'>Contact</Link>
-            </li>
-          </ul>
-        </div>
+
+        {/* Mobile Menu Overlay */}
+        <AnimatePresence>
+          {nav && (
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className='fixed top-0 left-0 w-full h-screen bg-slate-900 flex flex-col items-center justify-center space-y-8 z-40'
+            >
+              <div className='absolute inset-0 jaali-overlay opacity-20'></div>
+              {navLinks.map((link) => (
+                <motion.div
+                  key={link.path}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <Link
+                    href={link.path}
+                    onClick={handleNav}
+                    className='text-3xl font-serif text-white hover:text-amber-500 transition-colors'
+                  >
+                    {link.title}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4 }}
+              >
+                <Link href='/explore' onClick={handleNav} className='btn-accent'>
+                  Plan Your Trip
+                </Link>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </div>
+    </nav>
   );
 };
 

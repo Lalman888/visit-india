@@ -24,12 +24,11 @@ const Hero = ({ heading, message }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       heroSlide();
-    }, 8000); // Change the interval to 8 seconds
+    }, 8000);
     return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    // Preload the next image
     const nextImage = new Image();
     nextImage.src = `./Home/${images[(slide + 1) % images.length]}`;
     nextImage.onload = () => {
@@ -38,52 +37,77 @@ const Hero = ({ heading, message }) => {
   }, [slide]);
 
   return (
-    <div className="relative h-screen overflow-hidden">
-      <AnimatePresence exitBeforeEnter={false}>
+    <div className="relative h-screen min-h-[700px] overflow-hidden bg-slate-900">
+      {/* Background Image Slider */}
+      <AnimatePresence mode="wait">
         <motion.div
           key={slide}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 2, ease: 'easeInOut' }} // Adjusted duration and added ease function
-          className={`absolute inset-0 bg-fixed bg-center bg-cover transition-opacity duration-300 ease-in-out`}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 0.6, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 2.5, ease: [0.4, 0, 0.2, 1] }}
+          className="absolute inset-0 bg-center bg-cover"
           style={{ backgroundImage: `url('./Home/${images[slide]}')` }}
         />
       </AnimatePresence>
-      {/* <motion.div
-        key={slide}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.2 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 2, ease: 'easeInOut' }} // Adjusted duration and added ease function
-        className="absolute inset-0 bg-black/70 z-[2]"
-      /> */}
-      <div className="absolute bg-black/30 inset-0 flex items-center  justify-center">
-        <div className="text-center text-white/90">
-          <h2 className="text-5xl font-bold">{heading}</h2>
-          <p className="py-5 max-w-2xl text-xl">{message}</p>
-          <Link href="/explore">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-14 py-4 border explore font-semibold text-white/90 hover:bg-white hover:text-black"
-            >
-              Explore
-            </motion.button>
+
+      {/* Unique Indian Accent: Jaali Overlay */}
+      <div className="absolute inset-0 jaali-overlay opacity-30 pointer-events-none"></div>
+
+      {/* Content */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center z-10">
+        <motion.span
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="text-amber-500 font-medium tracking-[0.3em] uppercase text-sm mb-6"
+        >
+          Discover the Soul of
+        </motion.span>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7, duration: 1 }}
+          className="text-white mb-8 max-w-5xl leading-tight"
+        >
+          {heading}
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 1.5 }}
+          className="text-slate-300 text-lg md:text-xl max-w-2xl font-light leading-relaxed mb-12"
+        >
+          {message}
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5 }}
+          className="flex space-x-4"
+        >
+          <Link href="/explore" className="btn-accent">
+            Start Your Journey
           </Link>
-        </div>
+          <Link href="/about" className="px-8 py-3 rounded-full border border-white/30 text-white font-medium hover:bg-white/10 transition-all">
+            Learn More
+          </Link>
+        </motion.div>
       </div>
-      {isLoading && (
-        <div style={{ display: 'none' }}>
-          {/* Preload the next image to avoid white screen */}
-          {/*  eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            ref={imageRef}
-            src={`./Home/${images[(slide + 1) % images.length]}`}
-            alt=""
-          />
-        </div>
-      )}
+
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2"
+      >
+        <span className="text-white/50 text-xs tracking-widest uppercase mb-2">Scroll</span>
+        <div className="w-[1px] h-12 bg-gradient-to-b from-amber-500 to-transparent"></div>
+      </motion.div>
     </div>
   );
 };
