@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import SEOHead from '../../components/SEO/SEOHead';
 import { BreadcrumbSchema } from '../../components/SEO/StructuredData';
+import { getMultipleWikipediaSummaries } from '../../lib/wikipedia';
 
 // Blog posts content
 const blogContent = {
@@ -22,45 +23,86 @@ const blogContent = {
             { id: "varanasi", title: "3. Varanasi" },
             { id: "kerala", title: "4. Kerala Backwaters" },
             { id: "ladakh", title: "5. Ladakh" },
+            { id: "goa", title: "6. Goa" },
+            { id: "jaisalmer", title: "7. Jaisalmer" },
+            { id: "hampi", title: "8. Hampi" },
+            { id: "darjeeling", title: "9. Darjeeling" },
+            { id: "ranthambore", title: "10. Ranthambore" },
             { id: "planning", title: "Planning Your Trip" },
         ],
-        content: `
-      <p class="lead">India is a land of incredible diversity, where ancient history meets vibrant modernity. With countless destinations to explore, choosing where to go can be overwhelming. Here's our curated list of the top 10 places you absolutely must visit in 2025.</p>
-      
-      <h2 id="taj-mahal">1. Taj Mahal, Agra</h2>
-      <p>No visit to India is complete without seeing the <strong>Taj Mahal</strong>. This ivory-white marble mausoleum, built by Emperor Shah Jahan in memory of his wife Mumtaz Mahal, is widely considered the greatest architectural achievement in the world.</p>
-      <blockquote>💡 Pro Tip: The best time to visit is at sunrise when the monument glows pink and orange.</blockquote>
-      
-      <h2 id="jaipur">2. Jaipur, Rajasthan</h2>
-      <p>The "Pink City" is a photographer's paradise. Explore the magnificent <strong>Amber Fort</strong>, the astronomical marvel of Jantar Mantar, and the stunning Hawa Mahal (Palace of Winds). Don't miss the vibrant bazaars selling traditional textiles and jewelry.</p>
-      
-      <h2 id="varanasi">3. Varanasi, Uttar Pradesh</h2>
-      <p>One of the world's oldest continuously inhabited cities, Varanasi is India's spiritual heart. Witness the mesmerizing <strong>Ganga Aarti ceremony</strong> at sunset, take a boat ride at dawn, and explore the labyrinthine old city lanes.</p>
-      
-      <h2 id="kerala">4. Kerala Backwaters</h2>
-      <p>Cruise through the serene backwaters on a traditional houseboat. The palm-fringed waterways of <strong>Alleppey and Kumarakom</strong> offer a glimpse into timeless Kerala village life.</p>
-      
-      <h2 id="ladakh">5. Ladakh</h2>
-      <p>For adventure seekers, Ladakh offers dramatic high-altitude landscapes, ancient Buddhist monasteries, and some of the world's most challenging mountain passes. The best time to visit is May to September.</p>
-      
-      <h2>6. Goa</h2>
-      <p>India's beach paradise offers something for everyone – from party beaches in the north to serene coves in the south. Explore Portuguese heritage in Old Goa and enjoy world-class seafood.</p>
-      
-      <h2>7. Jaisalmer, Rajasthan</h2>
-      <p>The "Golden City" rises from the Thar Desert like a mirage. Stay in the stunning Jaisalmer Fort, one of the few living forts in the world, and experience a camel safari in the sand dunes.</p>
-      
-      <h2>8. Hampi, Karnataka</h2>
-      <p>This UNESCO World Heritage Site is the ruined capital of the Vijayanagara Empire. Explore hundreds of temples, monuments, and sculptures scattered across a surreal boulder-strewn landscape.</p>
-      
-      <h2>9. Darjeeling, West Bengal</h2>
-      <p>Famous for its tea plantations and views of Kanchenjunga, the world's third-highest peak, Darjeeling is a charming hill station with colonial-era architecture and the iconic toy train.</p>
-      
-      <h2>10. Ranthambore National Park</h2>
-      <p>One of the best places in India to spot tigers in the wild. This former royal hunting ground is now a premier wildlife sanctuary home to leopards, crocodiles, and hundreds of bird species.</p>
-      
-      <h2 id="planning">Planning Your Trip</h2>
-      <p>The best time to visit most of India is from <strong>October to March</strong> when the weather is pleasant. Book accommodations and train tickets well in advance, especially during peak season. Consider hiring a local guide to get deeper insights into each destination's history and culture.</p>
-    `,
+        sections: [
+            {
+                type: 'lead',
+                content: "India is a land of incredible diversity, where ancient history meets vibrant modernity. With countless destinations to explore, choosing where to go can be overwhelming. Here's our curated list of the top 10 places you absolutely must visit in 2025.",
+            },
+            {
+                id: 'taj-mahal',
+                title: '1. Taj Mahal, Agra',
+                search: 'Taj Mahal',
+                content: "No visit to India is complete without seeing the <strong>Taj Mahal</strong>. This ivory-white marble mausoleum, built by Emperor Shah Jahan in memory of his wife Mumtaz Mahal, is widely considered the greatest architectural achievement in the world.",
+                tip: "Pro Tip: The best time to visit is at sunrise when the monument glows pink and orange.",
+            },
+            {
+                id: 'jaipur',
+                title: '2. Jaipur, Rajasthan',
+                search: 'Hawa Mahal',
+                content: "The \"Pink City\" is a photographer's paradise. Explore the magnificent <strong>Amber Fort</strong>, the astronomical marvel of Jantar Mantar, and the stunning Hawa Mahal (Palace of Winds). Don't miss the vibrant bazaars selling traditional textiles and jewelry.",
+            },
+            {
+                id: 'varanasi',
+                title: '3. Varanasi, Uttar Pradesh',
+                search: 'Varanasi',
+                content: "One of the world's oldest continuously inhabited cities, Varanasi is India's spiritual heart. Witness the mesmerizing <strong>Ganga Aarti ceremony</strong> at sunset, take a boat ride at dawn, and explore the labyrinthine old city lanes.",
+            },
+            {
+                id: 'kerala',
+                title: '4. Kerala Backwaters',
+                search: 'Kerala backwaters',
+                content: "Cruise through the serene backwaters on a traditional houseboat. The palm-fringed waterways of <strong>Alleppey and Kumarakom</strong> offer a glimpse into timeless Kerala village life.",
+            },
+            {
+                id: 'ladakh',
+                title: '5. Ladakh',
+                search: 'Ladakh',
+                content: "For adventure seekers, Ladakh offers dramatic high-altitude landscapes, ancient Buddhist monasteries, and some of the world's most challenging mountain passes. The best time to visit is May to September.",
+            },
+            {
+                id: 'goa',
+                title: '6. Goa',
+                search: 'Goa beach',
+                content: "India's beach paradise offers something for everyone – from party beaches in the north to serene coves in the south. Explore Portuguese heritage in Old Goa and enjoy world-class seafood.",
+            },
+            {
+                id: 'jaisalmer',
+                title: '7. Jaisalmer, Rajasthan',
+                search: 'Jaisalmer Fort',
+                content: "The \"Golden City\" rises from the Thar Desert like a mirage. Stay in the stunning Jaisalmer Fort, one of the few living forts in the world, and experience a camel safari in the sand dunes.",
+            },
+            {
+                id: 'hampi',
+                title: '8. Hampi, Karnataka',
+                search: 'Hampi',
+                content: "This UNESCO World Heritage Site is the ruined capital of the Vijayanagara Empire. Explore hundreds of temples, monuments, and sculptures scattered across a surreal boulder-strewn landscape.",
+            },
+            {
+                id: 'darjeeling',
+                title: '9. Darjeeling, West Bengal',
+                search: 'Darjeeling Himalayan Railway',
+                content: "Famous for its tea plantations and views of Kanchenjunga, the world's third-highest peak, Darjeeling is a charming hill station with colonial-era architecture and the iconic toy train.",
+            },
+            {
+                id: 'ranthambore',
+                title: '10. Ranthambore National Park',
+                search: 'Ranthambore National Park',
+                content: "One of the best places in India to spot tigers in the wild. This former royal hunting ground is now a premier wildlife sanctuary home to leopards, crocodiles, and hundreds of bird species.",
+            },
+            {
+                id: 'planning',
+                title: 'Planning Your Trip',
+                search: 'Tourism in India',
+                content: "The best time to visit most of India is from <strong>October to March</strong> when the weather is pleasant. Book accommodations and train tickets well in advance, especially during peak season. Consider hiring a local guide to get deeper insights into each destination's history and culture.",
+            }
+        ],
         relatedPosts: ["golden-triangle-india-itinerary", "best-hill-stations-india"],
     },
     "golden-triangle-india-itinerary": {
@@ -422,6 +464,57 @@ const BlogPost = ({ post, relatedPosts }) => {
 
     const shareUrl = `https://visitindia.com/blog/${post.slug}`;
 
+    // Custom renderer for structured content
+    const renderSections = (sections) => {
+        return (
+            <div className="space-y-12">
+                {sections.map((section, index) => {
+                    if (section.type === 'lead') {
+                        return (
+                            <p key={index} className="text-xl text-slate-600 leading-relaxed mb-8">
+                                {section.content}
+                            </p>
+                        );
+                    }
+
+                    return (
+                        <div key={index} id={section.id} className="scroll-mt-24">
+                            <h2 className="text-3xl font-serif text-slate-900 mb-6 pb-2 border-b border-slate-200">
+                                {section.title}
+                            </h2>
+
+                            {section.imageUrl && (
+                                <div className="relative h-96 w-full rounded-2xl overflow-hidden mb-8 shadow-lg">
+                                    <Image
+                                        src={section.imageUrl}
+                                        alt={section.title}
+                                        layout="fill"
+                                        objectFit="cover"
+                                        className="hover:scale-105 transition-transform duration-700"
+                                    />
+                                    <div className="absolute bottom-0 left-0 bg-black/60 text-white text-xs px-3 py-1 rounded-tr-lg">
+                                        Image: Wikipedia
+                                    </div>
+                                </div>
+                            )}
+
+                            <div
+                                className="prose prose-lg prose-slate text-slate-700 max-w-none"
+                                dangerouslySetInnerHTML={{ __html: section.content }}
+                            />
+
+                            {section.tip && (
+                                <div className="mt-6 bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                                    <p className="text-amber-900 font-medium">{section.tip}</p>
+                                </div>
+                            )}
+                        </div>
+                    );
+                })}
+            </div>
+        );
+    };
+
     return (
         <div className="bg-slate-50 min-h-screen">
             <ReadingProgress />
@@ -499,19 +592,21 @@ const BlogPost = ({ post, relatedPosts }) => {
 
                     {/* Main Content */}
                     <article className="lg:col-span-6">
-                        <div
-                            className="prose prose-lg prose-slate max-w-none 
-                prose-headings:font-serif prose-headings:scroll-mt-24
-                prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:pb-3 prose-h2:border-b prose-h2:border-slate-200
-                prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
-                prose-p:leading-relaxed prose-p:text-slate-700
-                prose-a:text-amber-600 prose-a:no-underline hover:prose-a:underline
-                prose-blockquote:bg-amber-50 prose-blockquote:border-l-amber-500 prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:rounded-r-xl prose-blockquote:not-italic prose-blockquote:text-amber-900
-                prose-li:text-slate-700
-                prose-strong:text-slate-900
-                [&_.lead]:text-xl [&_.lead]:text-slate-600 [&_.lead]:leading-relaxed [&_.lead]:mb-8"
-                            dangerouslySetInnerHTML={{ __html: post.content }}
-                        />
+                        {post.sections ? renderSections(post.sections) : (
+                            <div
+                                className="prose prose-lg prose-slate max-w-none 
+                        prose-headings:font-serif prose-headings:scroll-mt-24
+                        prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:pb-3 prose-h2:border-b prose-h2:border-slate-200
+                        prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-4
+                        prose-p:leading-loose prose-p:text-slate-700 prose-p:mb-6
+                        prose-a:text-amber-600 prose-a:no-underline hover:prose-a:underline
+                        prose-blockquote:bg-amber-50 prose-blockquote:border-l-4 prose-blockquote:border-amber-500 prose-blockquote:py-6 prose-blockquote:px-8 prose-blockquote:rounded-r-xl prose-blockquote:not-italic prose-blockquote:text-amber-900 prose-blockquote:my-10
+                        prose-li:text-slate-700 prose-li:mb-2
+                        prose-strong:text-slate-900
+                        [&_.lead]:text-xl [&_.lead]:text-slate-600 [&_.lead]:leading-relaxed [&_.lead]:mb-10"
+                                dangerouslySetInnerHTML={{ __html: post.content }}
+                            />
+                        )}
 
                         {/* Author Box */}
                         <div className="mt-16 p-8 bg-white rounded-3xl shadow-lg border border-slate-100 flex items-center space-x-6">
@@ -588,6 +683,40 @@ export async function getStaticProps({ params }) {
         return { notFound: true };
     }
 
+    // Optimize: Fetch standard wikipedia images for standard items
+    // We do this at build time to avoid client-side waterfalls
+    let enhancedPost = { ...post };
+
+    if (post.sections) {
+        // Collect search terms
+        const termsToFetch = post.sections
+            .filter(section => section.search)
+            .map(section => section.search);
+
+        if (termsToFetch.length > 0) {
+            try {
+                // Fetch in parallel
+                const wikiData = await getMultipleWikipediaSummaries(termsToFetch);
+
+                // Inject images back into sections
+                enhancedPost.sections = post.sections.map(section => {
+                    if (section.search && wikiData[section.search]) {
+                        // Prefer original image for high quality, fallback to thumbnail
+                        const img = wikiData[section.search].originalImage || wikiData[section.search].thumbnail;
+                        if (img) {
+                            return { ...section, imageUrl: img };
+                        }
+                    }
+                    return section;
+                });
+
+            } catch (error) {
+                console.error("Error fetching wiki images:", error);
+                // Fallback: proceed without images if build fails
+            }
+        }
+    }
+
     // Get related posts
     const relatedPosts = post.relatedPosts?.map(slug => ({
         slug,
@@ -597,7 +726,7 @@ export async function getStaticProps({ params }) {
     return {
         props: {
             post: {
-                ...post,
+                ...enhancedPost,
                 slug: params.slug,
             },
             relatedPosts,
